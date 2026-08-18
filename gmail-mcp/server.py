@@ -4,12 +4,12 @@ from typing import Any
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
-from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer
 
 BASE = Path(__file__).parent
 SCOPES = ["https://www.googleapis.com/auth/gmail.modify"]
 
-mcp = FastMCP("gmail-organizer")
+mcp = MCPServer("gmail-organizer")
 
 def gmail():
     creds = Credentials.from_authorized_user_file(BASE / "token.json", SCOPES)
