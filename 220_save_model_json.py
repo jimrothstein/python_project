@@ -1,5 +1,6 @@
 # Import Required packages 
-#-------------------------
+# Explain:
+#https://www.geeksforgeeks.org/machine-learning/learning-model-building-scikit-learn-python-machine-learning-library/-------------------------
 
 # Import the Logistic Regression Module from Scikit Learn
 from sklearn.linear_model import LogisticRegression  
