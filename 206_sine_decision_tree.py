@@ -8,12 +8,14 @@
 #
 # OUTPUTS (overwritten each run):
 #   /tmp/opencode/tree_blue_points.png   graph: data dots + blue prediction line
+#   /tmp/opencode/tree_plot_sine.png     the tree itself (splits + leaf rules)
 #   /tmp/opencode/table80.txt            ALL N rows: row, x, y_pred, y_true, err
 # REF: https://scikit-learn.org/stable/auto_examples/tree/plot_tree_regression.html
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeRegressor
+from sklearn import tree
 
 # 80 points, N/5 will be noisy
 N=80
@@ -36,6 +38,13 @@ plt.legend()
 plt.tight_layout()
 plt.savefig("/tmp/opencode/tree_blue_points.png", dpi=100)
 
+# draw the tree itself (splits + leaf rules) -- like tree.plot_tree(clf) for iris
+fig, ax = plt.subplots(figsize=(10, 5))
+tree.plot_tree(d2, ax=ax)
+fig.tight_layout()
+fig.savefig("/tmp/opencode/tree_plot_sine.png", dpi=100)
+plt.close(fig)
+
 # save datapoints
 df = pd.DataFrame({"x": X.ravel(), "y_pred": d2.predict(X), "y_true": y})
 df["err"] = df.y_true - df.y_pred
@@ -44,4 +53,4 @@ with open("/tmp/opencode/table80.txt", "w") as f:
     f.write(tbl + "\n")
 
 assert len(df) == N
-print(f"saved: {N} rows -> /tmp/opencode/table80.txt, png -> /tmp/opencode/tree_blue_points.png")
+print(f"saved: {N} rows -> /tmp/opencode/table80.txt, png -> /tmp/opencode/tree_blue_points.png, tree -> /tmp/opencode/tree_plot_sine.png")
