@@ -1,1 +1,1 @@
-/home/jim/dotfiles/opencode/projects/transform_project.md
+/home/jim/dotfiles/opencode/projects/python_project.md
